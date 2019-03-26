@@ -1,0 +1,25 @@
+#Step-1 (Add bind address)
+sudo vi /etc/mysql/my.cnf
+#change 127.0.0.1 to local IP (i.e 192.168.2.22)
+#bind-address  127.0.0.1
+bind-address  192.168.2.22
+
+Step-2 (Create user and password)
+mysql -uroot -ppassword
+#For Local IP
+mysql> CREATE USER 'testuser'@'192.168.2.22' IDENTIFIED WITH mysql_native_password;
+mysql> GRANT USAGE ON *.* TO 'testuser'@'192.168.2.22' REQUIRE NONE;
+mysql> SET PASSWORD FOR 'testuser'@'192.168.2.22' =  PASSWORD('password');
+
+#For Remote IP
+mysql> CREATE USER 'testuser'@'192.168.2.33' IDENTIFIED WITH mysql_native_password;
+mysql> GRANT USAGE ON *.* TO 'testuser'@'192.168.2.33' REQUIRE NONE;
+mysql> SET PASSWORD FOR 'testuser'@'192.168.2.33' =  PASSWORD('password');
+
+Step-3 (Allow port for specific IP)
+sudo iptables -L
+sudo iptables -I INPUT -p tcp -s 192.168.2.33 --dport 3006 -j ACCEPT
+
+Step-4 (Test Connection)
+mysql -h 192.168.2.22 -uroot -ppassword
+mysql>
