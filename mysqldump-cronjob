@@ -1,8 +1,5 @@
-sudo crontab -u mysqluser -e
-
-0 13 * * * mysqldump -u root -h localhost DBNAME > ~/tmp/DBname_`date +\%Y\%m\%d_\%H\%M`.sql
-
-# create ".my.cnf" file in home directory with this command:
+#How to run cronjob to take regular backup (Database backup)?
+#Create a file called .my.cnf in Home
 
 vi ~/.my.cnf
 
@@ -18,6 +15,7 @@ chmod 600 ~/.my.cnf
 
 
 _________________________________________________________________________________________________________________________________________
+#Example:
 
 vi ~/.my.cnf
 
@@ -27,11 +25,11 @@ password=password123
 
 chmod 600 ~/.my.cnf
 
-sudo crontab -u adsynamin -e
-*/2 * * * * mysqldump -u root -h localhost DBNAME > ~/tmp/DBname_`date +\%Y\%m\%d_\%H\%M`.sql
+sudo crontab -u username -e
+#Add the belopw command to cronjob to run database backup at 05.30 AM and store it to /home/user/tmp/
 
-CRON FOR DELETE
-synamen.com
-26 7 * * *  find ~/tmp/ -name 'DBname*' -type f -mtime +7 -exec rm {} \;
+30 05 * * * mysqldump -u root -h localhost DBNAME > ~/tmp/DBname_`date +\%Y\%m\%d_\%H\%M`.sql
 
-26 7 * * *  find ~/tmp/ -name 'DBname*' -type f -mtime +3 -exec rm {} +
+#To delete the files older than 7 days,add the below command to cronjob
+
+30 03 * * *  find ~/tmp/ -name 'DBname*' -type f -mtime +7 -exec rm {} \;
