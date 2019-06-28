@@ -1,0 +1,29 @@
+select * from core_config_data where path like "%web%";
+
+select * from admin_users where username like "%gene%";
+
+select * from admin_user order by username asc;
+
+select * from core_config_data where path like '%base%url%';
+
+Magento 1
+
+update core_config_data set value = 'http://www.example.com/' where path = 'web/secure/base_url';
+update core_config_data set value = 'http://www.example.com/' where path = 'web/unsecure/base_url';
+update core_config_data set value = 'http://www.example.com/skin/' where path = 'web/unsecure/base_skin_url';
+update core_config_data set value = 'http://www.example.com/skin/' where path = 'web/secure/base_skin_url';
+update core_config_data set value = 'hhttp://www.example.com/media/' where path = 'web/unsecure/base_media_url';
+update core_config_data set value = 'http://www.example.com/media/' where path = 'web/secure/base_media_url';
+update core_config_data set value = 'http://www.example.com/js/' where path = 'web/secure/base_js_url';
+update core_config_data set value = 'http://www.example.com/js/' where path = 'web/unsecure/base_js_url';
+update core_config_data set value = 'http://www.example.com/' where path = 'web/unsecure/base_link_url';
+update core_config_data set value = 'http://www.example.com/' where path = 'web/secure/base_link_url';
+
+Magento 2
+
+update core_config_data set value = 'http://www.example.com/' where path = 'web/unsecure/base_url';
+update core_config_data set value = 'http://www.example.com/' where path = 'web/secure/base_url';
+update core_config_data set value = 'http://www.example.com/pub/static/' where path = 'web/unsecure/base_static_url';
+update core_config_data set value = 'http://www.example.com/pub/static/' where path = 'web/secure/base_static_url';
+update core_config_data set value = 'http://www.example.com/pub/media/' where path = 'web/unsecure/base_media_url';
+update core_config_data set value = 'http://www.example.com/pub/media/' where path = 'web/secure/base_media_url';
