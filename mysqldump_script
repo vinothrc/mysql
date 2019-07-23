@@ -1,0 +1,10 @@
+#!/bin/sh
+# (1) set up all the mysqldump variables
+location=/home/user/DBbackup/DB/dev_valveparts_`date +\%Y\%m\%d_\%H\%M`.sql.gz
+DBSERVER=192.168.2.55
+DATABASE=test
+PASS=passtest
+
+# use this command for a database server on localhost. add other options if need be.
+#mysqldump --opt -h$DBSERVER --user=${USER} --password=${PASS} ${DATABASE} | gzip -c > ${location}
+mysqldump --opt --user=${USER} --password=${PASS} ${DATABASE} --ignore-table=${DATABASE}.core_url_rewrite --ignore-table=${DATABASE}.dataflow_batch_export --ignore-table=${DATABASE}.dataflow_batch_import --ignore-table=${DATABASE}.log_customer --ignore-table=${DATABASE}.log_quote --ignore-table=${DATABASE}.log_summary --ignore-table=${DATABASE}.log_summary_type --ignore-table=${DATABASE}.log_url --ignore-table=${DATABASE}.log_url_info --ignore-table=${DATABASE}.log_visitor --ignore-table=${DATABASE}.log_visitor_info --ignore-table=${DATABASE}.log_visitor_online --ignore-table=${DATABASE}.report_viewed_product_index --ignore-table=${DATABASE}.report_compared_product_index --ignore-table=${DATABASE}.report_event | gzip -c > ${location}
